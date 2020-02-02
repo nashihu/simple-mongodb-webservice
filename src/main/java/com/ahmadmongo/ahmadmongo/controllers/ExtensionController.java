@@ -1,9 +1,9 @@
-package com.ahmadmongo.ahmadmongo.extension;
+package com.ahmadmongo.ahmadmongo.controllers;
 
-import com.ahmadmongo.ahmadmongo.matkul.MatKulService;
-import com.ahmadmongo.ahmadmongo.matkul.MataKuliah;
-import com.ahmadmongo.ahmadmongo.student.Student;
-import com.ahmadmongo.ahmadmongo.student.StudentService;
+import com.ahmadmongo.ahmadmongo.sevice.MatKulService;
+import com.ahmadmongo.ahmadmongo.model.MataKuliah;
+import com.ahmadmongo.ahmadmongo.model.Student;
+import com.ahmadmongo.ahmadmongo.sevice.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

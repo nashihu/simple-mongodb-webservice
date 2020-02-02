@@ -1,9 +1,12 @@
-package com.ahmadmongo.ahmadmongo.student;
+package com.ahmadmongo.ahmadmongo.controllers;
 
-import com.ahmadmongo.ahmadmongo.BaseFunc;
-import com.ahmadmongo.ahmadmongo.matkul.MatKulService;
-import com.ahmadmongo.ahmadmongo.matkul.MataKuliah;
+import com.ahmadmongo.ahmadmongo.sevice.MatKulService;
+import com.ahmadmongo.ahmadmongo.model.MataKuliah;
+import com.ahmadmongo.ahmadmongo.model.Student;
+import com.ahmadmongo.ahmadmongo.sevice.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +24,10 @@ public class StudentController {
     @Autowired
     private MatKulService matKulService;
 
-    @GetMapping(value = "/getAllStudent")
-    public List<Student> getAllStudents() {
-        return studentService.findAll();
+    @GetMapping(value = "/getAllStudentPageAble")
+    public Page<Student> getAllStudents(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        return studentService.findAll(pageRequest);
     }
 
     @RequestMapping(value = "/getStudentByNumber/{studentNumber}",method = RequestMethod.GET)

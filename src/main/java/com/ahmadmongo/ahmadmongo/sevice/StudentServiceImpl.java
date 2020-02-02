@@ -1,6 +1,11 @@
-package com.ahmadmongo.ahmadmongo.student;
+package com.ahmadmongo.ahmadmongo.sevice;
 
+import com.ahmadmongo.ahmadmongo.model.Student;
+import com.ahmadmongo.ahmadmongo.repo.StudentRepository;
+import com.ahmadmongo.ahmadmongo.sevice.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -15,6 +20,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAll() {
         return studentRepository.findAll();
+    }
+
+    @Override
+    public Page<Student> findAll(PageRequest pageRequest) {
+        return studentRepository.findAll(pageRequest);
     }
 
     @Override

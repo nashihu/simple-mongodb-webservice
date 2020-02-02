@@ -1,5 +1,6 @@
-package com.ahmadmongo.ahmadmongo.student;
+package com.ahmadmongo.ahmadmongo.repo;
 
+import com.ahmadmongo.ahmadmongo.model.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
