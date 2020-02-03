@@ -5,3 +5,7 @@ repo ini dibuat berdasarkan requirement dari [soal testing icon](https://github.
 todo:
 - add auth (done)
 - implement pagination (done)
+
+repo ini sudah di-deploy ke [heroku](http://ahmadsipp.herokuapp.com/swagger-ui.html)*
+
+**apabila connection time out harap hubungi maintainer*
