@@ -37,6 +37,24 @@
 <!--			<version>1.0.2</version>-->
 <!--		</dependency>-->
 
+
+<!--		implementation 'io.jsonwebtoken:jjwt:0.9.1'-->
+<!--		implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"-->
+<!--		implementation 'org.springframework.boot:spring-boot-starter-security'-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
