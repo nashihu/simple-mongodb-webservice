@@ -5,10 +5,7 @@ import com.ahmadmongo.ahmadmongo.model.MataKuliah;
 import com.ahmadmongo.ahmadmongo.model.Student;
 import com.ahmadmongo.ahmadmongo.sevice.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,12 +22,12 @@ public class ExtensionController {
     private MatKulService matKulService;
 
     @GetMapping(value = "/getAllStudentWithMatkul")
-    public List<Student> getAllStudents() {
+    public List<Student> getAllStudents(@RequestHeader String Authorization) {
         return studentService.findAll();
     }
 
     @GetMapping(value = "/getMatkulWithNumStudents")
-    public List<MataKuliahLeftJoined> getAllMatkulWithNumStudents() {
+    public List<MataKuliahLeftJoined> getAllMatkulWithNumStudents(@RequestHeader String Authorization) {
         List<Student> students = studentService.findAll();
         List<MataKuliah> mataKuliahs = matKulService.findAll();
         List<MataKuliahLeftJoined> mataKuliahLeftJoineds = MataKuliahLeftJoined.fromMataKuliahs(mataKuliahs);
@@ -54,7 +51,8 @@ public class ExtensionController {
     }
 
     @GetMapping(value = "/getNumberStudentFromJurusanName/{jurusanName}")
-    public int getNumberStudentFromJurusanName(@PathVariable("jurusanName") String jurusanName) {
+    public int getNumberStudentFromJurusanName(@PathVariable("jurusanName") String jurusanName,
+                                               @RequestHeader String Authorization) {
         List<Student> students =  studentService.findAll();
         List<String> jurusan = new ArrayList<>();
         for(int i = 0; i< students.size();i++) {

@@ -25,28 +25,28 @@ public class StudentController {
     private MatKulService matKulService;
 
     @GetMapping(value = "/getAllStudentPageAble")
-    public Page<Student> getAllStudents(int page, int size) {
+    public Page<Student> getAllStudents(int page, int size, @RequestHeader String Authorization) {
         PageRequest pageRequest = PageRequest.of(page,size);
         return studentService.findAll(pageRequest);
     }
 
     @RequestMapping(value = "/getStudentByNumber/{studentNumber}",method = RequestMethod.GET)
-    public Student getStudentByStudentNumber(@PathVariable("studentNumber") Long studentNumber) {
+    public Student getStudentByStudentNumber(@PathVariable("studentNumber") Long studentNumber, @RequestHeader String Authorization) {
         return studentService.findByStudentNumber(studentNumber);
     }
 
     @RequestMapping(value = "/getStudentByEmail/{email}",method = RequestMethod.GET)
-    public Student getStudentByEmail(@PathVariable("email") String email) {
+    public Student getStudentByEmail(@PathVariable("email") String email,@RequestHeader String Authorization) {
         return studentService.findByEmail(email);
     }
 
     @RequestMapping(value = "/getStudentOrderByGpa",method = RequestMethod.GET)
-    public List<Student> findAllByOrderByGpaDesc() {
+    public List<Student> findAllByOrderByGpaDesc(@RequestHeader String Authorization) {
         return studentService.findAllByOrderByGpa();
     }
 
     @PostMapping(value = "/addStudent")
-    public ResponseEntity<?> saveOrUpdateStudent(@RequestBody Student student) {
+    public ResponseEntity<?> saveOrUpdateStudent(@RequestBody Student student, @RequestHeader String Authorization) {
         List<MataKuliah> mataKuliahs = new ArrayList<>();
         if(student.getCourseList()==null) {
             student.setCourseList(mataKuliahs);
@@ -56,12 +56,12 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/deleteStudentByNumber/{studentNumber}")
-    public void deleteStudent(@PathVariable Long studentNumber) {
+    public void deleteStudent(@PathVariable Long studentNumber,@RequestHeader String Authorization) {
         studentService.deleteStudent(studentService.findByStudentNumber(studentNumber).getId());
     }
 
     @PostMapping(value = "/addMatkul")
-    public ResponseEntity<?> addMatKul(@RequestBody AddMatkul addMatkul) {
+    public ResponseEntity<?> addMatKul(@RequestBody AddMatkul addMatkul,@RequestHeader String Authorization) {
         long  studentNumber = addMatkul.getStudentNumber();
         String matkul = addMatkul.getMatkul();
         Student student = studentService.findByStudentNumber(studentNumber);
@@ -77,7 +77,7 @@ public class StudentController {
     }
 
     @PostMapping(value = "/removeMatkul")
-    public ResponseEntity<?> removeMatKul(@RequestBody AddMatkul addMatkul) {
+    public ResponseEntity<?> removeMatKul(@RequestBody AddMatkul addMatkul,@RequestHeader String Authorization) {
         long studentNumber = addMatkul.getStudentNumber();
         String matkul = addMatkul.getMatkul();
         Student student = studentService.findByStudentNumber(studentNumber);

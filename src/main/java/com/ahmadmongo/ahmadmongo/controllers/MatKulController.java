@@ -24,7 +24,7 @@ public class MatKulController {
 //    }
 
     @GetMapping(value = "/findAllMatKulPageable")
-    public Page<MataKuliah> getAllMatKulPageable(int page, int size) {
+    public Page<MataKuliah> getAllMatKulPageable(int page, int size,@RequestHeader String Authorization) {
         PageRequest pageable = PageRequest.of(page,size);
 
         Page<MataKuliah> pages = matKulService.findAll(pageable);
@@ -32,18 +32,18 @@ public class MatKulController {
     }
 
     @GetMapping(value = "/getMatKulByName/{matKulName}")
-    public MataKuliah getMatKulByName(@PathVariable("matKulName") String matKulName) {
+    public MataKuliah getMatKulByName(@PathVariable("matKulName") String matKulName,@RequestHeader String Authorization) {
         return matKulService.findMatkulByName(matKulName);
     }
 
     @PostMapping(value = "/addMatKul")
-    public ResponseEntity<?> saveOrUpdateMatKul(@RequestBody MataKuliah mataKuliah) {
+    public ResponseEntity<?> saveOrUpdateMatKul(@RequestBody MataKuliah mataKuliah,@RequestHeader String Authorization) {
         matKulService.saveOrUpdateMatKul(mataKuliah);
         return new ResponseEntity("Matkul added successfully", HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/deleteMatKulByName/{mataKuliahName}")
-    public  ResponseEntity<?> deleteMatKul(@PathVariable String mataKuliahName) {
+    public  ResponseEntity<?> deleteMatKul(@PathVariable String mataKuliahName,@RequestHeader String Authorization) {
         MataKuliah mataKuliah = matKulService.findMatkulByName(mataKuliahName);
         matKulService.deleteMatKul(matKulService.findMatkulByName(mataKuliahName).getId());
         return new ResponseEntity("sip",HttpStatus.OK);
